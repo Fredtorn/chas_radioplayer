@@ -10,7 +10,7 @@
 
 const mainContainerEl = document.getElementById("mainContainer");
 
-fetch("https://api.sr.se/api/v2/channels?format=json&size=100")
+fetch("https://api.sr.se/api/v2/channels/?format=json")
     .then((response) => {
         return response.json();
     })
@@ -31,14 +31,19 @@ fetch("https://api.sr.se/api/v2/channels?format=json&size=100")
 
             bodyEl.setAttribute("class", "mainBody")
             imgEl.setAttribute("src", `${channel.image}`)
+            imgEl.setAttribute("alt", `${channel.name}`)
             titleEl.setAttribute("class", "title")
             audioEl.setAttribute("class", "audioEl")
             audioSourceEl.setAttribute("src", `${channel.liveaudio.url}`)
+            audioSourceEl.setAttribute("type", "audio/mpeg")
+            audioSourceEl.setAttribute("type", "audio/ogg")
+
+
             audioEl.controls = true;
 
             titleEl.textContent = channel.name;
             bodyEl.style.backgroundColor = `#${channel.color}`
- 
+
             mainContainerEl.appendChild(bodyEl);
             bodyEl.appendChild(imgEl);
             bodyEl.appendChild(titleEl)
